@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}" />
+<link rel="canonical" href="{{SITE_URL}}/{{PAGE_FILE}}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Underground Garden" />
+<meta property="og:title" content="{{TITLE}}" />
+<meta property="og:description" content="{{DESCRIPTION}}" />
+<meta property="og:url" content="{{SITE_URL}}/{{PAGE_FILE}}" />
+<meta property="og:image" content="{{SITE_URL}}/assets/img/brand/og-image.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{TITLE}}" />
+<meta name="twitter:description" content="{{DESCRIPTION}}" />
+<meta name="twitter:image" content="{{SITE_URL}}/assets/img/brand/og-image.jpg" />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="icon" type="image/png" href="assets/img/brand/ug-mark.png" />
+<link rel="apple-touch-icon" href="assets/img/brand/ug-mark.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital@1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css?v={{CSS_VER}}" />
+<!-- Without this, every .reveal-classed element on the site (i.e. nearly
+     everything) starts at opacity:0 and only becomes visible once main.js's
+     IntersectionObserver adds .is-visible. If JS fails to load or errors
+     for any reason, the whole page would otherwise stay invisible forever. -->
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<!-- Google Analytics (GA4) — get a Measurement ID at analytics.google.com (free),
+     paste it in place of "G-XXXXXXXXXX" below. Left as a placeholder, this script
+     intentionally no-ops instead of sending fake data to Google. -->
+<script>
+  (function () {
+    var GA_MEASUREMENT_ID = "G-3M4QYM3MV5";
+    if (GA_MEASUREMENT_ID === "G-XXXXXXXXXX") return;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", GA_MEASUREMENT_ID);
+  })();
+</script>
+<!-- Sitewide Organization structured data (SEO) — separate from the
+     per-event JSON-LD in pages/events.html, which describes individual
+     Event entities. This describes the brand itself, so Google can show
+     the right name/logo/social links in knowledge-panel-style results.
+     Update `sameAs` here if a social profile URL ever changes; it's the
+     only place these are duplicated for structured-data purposes (the
+     social rail + footer own the actual clickable links). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Underground Garden",
+  "url": "{{SITE_URL}}/",
+  "logo": "{{SITE_URL}}/assets/img/brand/ug-mark.png",
+  "sameAs": [
+    "https://www.instagram.com/Undergroundgardenevents",
+    "https://www.tiktok.com/@undergroundgardenevents",
+    "https://www.youtube.com/@undergroundgardenevents",
+    "https://www.facebook.com/people/Underground-Garden/61578136865282/",
+    "https://soundcloud.com/undergroundgardenevents"
+  ]
+}
+</script>
+{{EXTRA_HEAD}}</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- SOCIAL RAIL -->
+<div class="social-rail" aria-label="Social links">
+  <a href="https://www.instagram.com/Undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1"/></svg></a>
+  <a href="https://www.tiktok.com/@undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on TikTok"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 2.5c.5 2.4 2 4 4.4 4.3v3.2c-1.6.1-3-.4-4.4-1.3v6.6c0 3.7-3 6.7-6.7 6.7S3.2 18 3.2 14.3s3-6.7 6.7-6.7c.3 0 .6 0 .9.1v3.3c-.3-.1-.6-.1-.9-.1-1.8 0-3.3 1.5-3.3 3.4s1.5 3.3 3.3 3.3c1.9 0 3.5-1.5 3.5-3.4V2.5h3.2z"/></svg></a>
+  <a href="https://www.youtube.com/@undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10.5 9.3l4.6 2.7-4.6 2.7z" fill="currentColor" stroke="none"/></svg></a>
+  <a href="https://www.facebook.com/people/Underground-Garden/61578136865282/" target="_blank" rel="noopener" aria-label="Underground Garden on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-2.9h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6v1.9h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+  <a href="https://soundcloud.com/undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on SoundCloud"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 14.5c-.3 0-.5.2-.5.5v3c0 .3.2.5.5.5s.5-.2.5-.5v-3c0-.3-.2-.5-.5-.5zM4 13c-.3 0-.5.2-.5.5v5c0 .3.2.5.5.5s.5-.2.5-.5v-5c0-.3-.2-.5-.5-.5zM6 12.2c-.3 0-.5.2-.5.5v5.8c0 .3.2.5.5.5s.5-.2.5-.5v-5.8c0-.3-.2-.5-.5-.5zM8 11.8c-.3 0-.5.2-.5.5v6.2c0 .3.2.5.5.5s.5-.2.5-.5v-6.2c0-.3-.2-.5-.5-.5zM17.5 10.1c-.4-2.4-2.5-4.2-5-4.2-1.6 0-3 .7-4 1.9-.2-.1-.5-.1-.8-.1-.7 0-1.2.5-1.2 1.2v9.1c0 .1 0 .2.1.3.1.1.2.1.3.1h10.4c1.7 0 3.2-1.4 3.2-3.2 0-1.6-1.2-3-2.8-3.2z"/></svg></a>
+</div>
+
+<!-- NAV -->
+<header class="site-nav">
+  <div class="container nav-row">
+    <a href="index.html" class="brand-mark" aria-label="Underground Garden home">
+      <img src="assets/img/brand/ug-mark.png" alt="" width="400" height="386" />
+      Underground <span class="mark-sub">Garden</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+{{NAV_LINKS}}
+    </nav>
+    <a class="btn btn--primary nav-cta" href="{{NAV_CTA_HREF}}">{{NAV_CTA_LABEL}}</a>
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-menu-close" aria-label="Close menu">&times;</button>
+  <ul>
+{{MOBILE_MENU_LINKS}}
+  </ul>
+</div>
+
+<main id="main">
+{{BODY}}
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Underground Garden</h4>
+        <p class="lede" style="font-size:1rem;">South Florida's home for underground bass — pool parties, beach parties, and the road to Subtropics.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="subtropics.html">Subtropics</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="merch.html">Merch</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="safety.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Booking</a></li>
+          <li><a href="contact.html">Partners &amp; Sponsors</a></li>
+          <li><a href="contact.html">General Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <ul class="socials" style="flex-direction:column;">
+          <li><a href="https://www.instagram.com/Undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on Instagram">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on TikTok">TikTok</a></li>
+          <li><a href="https://www.youtube.com/@undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on YouTube">YouTube</a></li>
+          <li><a href="https://www.facebook.com/people/Underground-Garden/61578136865282/" target="_blank" rel="noopener" aria-label="Underground Garden on Facebook">Facebook</a></li>
+          <li><a href="https://soundcloud.com/undergroundgardenevents" target="_blank" rel="noopener" aria-label="Underground Garden on SoundCloud">SoundCloud</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span data-year></span> Underground Garden. All rights reserved. &middot; <a href="privacy.html" style="color:var(--bone-dim);">Privacy Policy</a> &middot; <a href="terms.html" style="color:var(--bone-dim);">Terms of Service</a></p>
+      <p>South Florida, USA</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" aria-label="Back to top" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script src="assets/js/main.js?v={{JS_VER}}"></script>
+{{EXTRA_SCRIPTS}}</body>
+</html>

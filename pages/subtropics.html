@@ -1,0 +1,226 @@
+---
+title: Subtropics — Underground Garden
+description: Subtropics — a sunset-into-night music festival at Virginia Key Beach, Miami. Launching 2028. Join the presale list.
+active: subtropics
+nav_cta_label: Join Presale
+nav_cta_href: #presale
+---
+<!-- head -->
+<style>
+  :root {
+    --sub-black: #14120F;
+    --sub-bone: #F3ECDD;
+    --sub-sand: #C79A48;
+    --sub-palm: #3C7A5B;
+    --sub-coral: #E8735A;
+    --sub-navy: #16324A;
+    /* turquoise lives in the global --turquoise token (style.css) — it's
+       also used in the site nav to accent the Subtropics link, so it's
+       shared rather than redefined here. */
+  }
+
+  /* hero: sunset (sand/coral) bleeding into night (navy), cursor-reactive glow kept */
+  .hero .hero-glow {
+    background:
+      radial-gradient(480px circle at var(--mx) var(--my), rgba(199, 154, 72, 0.18), transparent 62%),
+      radial-gradient(circle at 30% 25%, rgba(232, 115, 90, 0.16), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(56, 198, 190, 0.10), transparent 50%),
+      radial-gradient(ellipse 130% 100% at 50% 50%, transparent 45%, rgba(22, 50, 74, 0.55) 100%);
+  }
+
+  .sunset-band {
+    background: linear-gradient(180deg, var(--sub-sand) 0%, var(--sub-coral) 35%, var(--sub-navy) 75%, var(--sub-black) 100%);
+    height: 4px;
+    width: 100%;
+  }
+
+  /* timeline: day (sand) fading to night (turquoise) as the road reaches 2028 */
+  .timeline::before {
+    background: linear-gradient(var(--sub-sand), var(--turquoise));
+  }
+  .timeline-item::before { background: var(--sub-sand); box-shadow: 0 0 0 4px rgba(199, 154, 72, 0.15); }
+  .timeline-item--give-back::before { background: var(--sub-coral); box-shadow: 0 0 0 4px rgba(232, 115, 90, 0.15); }
+  .timeline-item--flagship::before {
+    background: var(--turquoise);
+    box-shadow: 0 0 0 4px rgba(56, 198, 190, 0.2), 0 0 16px rgba(56, 198, 190, 0.5);
+  }
+
+  .color-world {
+    height: 220px;
+    border-radius: 4px;
+    background: linear-gradient(135deg, var(--sub-sand) 0%, var(--sub-coral) 30%, var(--sub-navy) 68%, var(--sub-black) 100%);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(243, 236, 221, 0.12);
+  }
+  .color-world::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(220px circle at 78% 68%, rgba(56, 198, 190, 0.55), transparent 70%);
+  }
+  .color-world span {
+    position: absolute;
+    bottom: var(--space-3);
+    left: var(--space-3);
+    z-index: 1;
+    font-family: var(--font-utility);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: rgba(20, 18, 15, 0.55);
+    padding: 6px 10px;
+    border-radius: 2px;
+  }
+
+  /* founder quote: an editorial pull-quote instead of a generic boxed card */
+  .founder-quote {
+    position: relative;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-3) 0 var(--space-3) var(--space-6);
+    border-left: 3px solid var(--sub-coral);
+  }
+  .founder-quote::before {
+    content: "\201C";
+    position: absolute;
+    top: -0.4em;
+    left: -0.15em;
+    font-family: var(--font-display);
+    font-size: 9rem;
+    line-height: 1;
+    color: var(--sub-sand);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  #presale .bg-forest-block {
+    background: linear-gradient(135deg, var(--sub-navy), var(--sub-black));
+    border: 1px solid rgba(56, 198, 190, 0.3);
+    box-shadow: 0 0 40px rgba(56, 198, 190, 0.08);
+  }
+
+  /* "Virginia Key Beach" type-break, recolored to this page's sunset/night
+     story instead of the site-default bone/amber outline (see .type-break
+     in style.css) — sand for the base pass, turquoise for the offset
+     duplicate, same day-into-night logic as the hero glow/timeline/countdown
+     above. Scoped to this page's own <style> block on purpose: .type-break
+     is a shared component used on 3 other pages that should keep the
+     default look. */
+  .type-break span { -webkit-text-stroke: 1.5px var(--sub-sand); }
+  .type-break span:nth-child(even) {
+    color: var(--turquoise);
+    -webkit-text-stroke: 1.5px var(--turquoise);
+    opacity: 0.3;
+  }
+</style>
+<!-- body -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="eyebrow reveal" style="color:var(--sub-bone);">Virginia Key Beach, Miami &middot; 2028</p>
+      <h1>Subtropics</h1>
+      <p class="tagline reveal" style="margin-top:var(--space-2); color:var(--sub-coral);">Beach Music Festival</p>
+      <p class="lede reveal mt-1" style="max-width:600px;">A sunset-into-night festival built from the underground up. The flagship destination every Underground Garden event has been building toward.</p>
+
+      <div class="reveal mt-2" data-countdown="2028-02-01T18:00:00">
+        <p class="eyebrow" style="margin-bottom:var(--space-2); color:var(--turquoise);">Countdown to Launch</p>
+        <div class="countdown countdown--neon">
+          <div class="countdown-unit"><div class="countdown-num" data-days>—</div><div class="countdown-label">Days</div></div>
+          <div class="countdown-unit"><div class="countdown-num" data-hours>—</div><div class="countdown-label">Hours</div></div>
+          <div class="countdown-unit"><div class="countdown-num" data-mins>—</div><div class="countdown-label">Min</div></div>
+          <div class="countdown-unit"><div class="countdown-num" data-secs>—</div><div class="countdown-label">Sec</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="sunset-band" aria-hidden="true"></div>
+
+  <div class="type-break" aria-hidden="true">
+    <div class="type-break-track">
+      <span>Virginia Key Beach</span><span>Virginia Key Beach</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" style="color:var(--sub-sand);">The Journey</p>
+        <h2>The Road to Subtropics</h2>
+      </div>
+      <!-- Chapter One/Two/Three + Give Back Bass Night dates here must match
+           events.html's calendar cards + JSON-LD (see README "Event
+           structured data" section) — copy is intentionally different
+           (this is a narrative timeline, events.html is a reference list),
+           just keep the month/year in sync. -->
+      <div class="timeline reveal-group">
+        <div class="timeline-item reveal">
+          <p class="eyebrow" style="margin-bottom:4px; color:var(--sub-sand);">Late August 2026</p>
+          <h3>Chapter One</h3>
+        </div>
+        <div class="timeline-item reveal">
+          <p class="eyebrow" style="margin-bottom:4px; color:var(--sub-sand);">October 2026</p>
+          <h3>Chapter Two</h3>
+        </div>
+        <div class="timeline-item timeline-item--give-back reveal">
+          <p class="eyebrow" style="margin-bottom:4px; color:var(--sub-coral);">November 2026</p>
+          <h3>Give Back Bass Night</h3>
+        </div>
+        <div class="timeline-item reveal">
+          <p class="eyebrow" style="margin-bottom:4px; color:var(--sub-sand);">December 2026</p>
+          <h3>Chapter Three</h3>
+        </div>
+        <div class="timeline-item timeline-item--flagship reveal">
+          <p class="eyebrow" style="margin-bottom:4px; color:var(--turquoise);">2028</p>
+          <h3 style="color:var(--turquoise); text-shadow:0 0 18px rgba(56,198,190,0.35);">Subtropics</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="vine-divider" aria-hidden="true">
+    <img src="assets/img/brand/ug-wordmark-vine.png" alt="" loading="lazy" width="640" height="334" />
+  </div>
+
+  <section class="section section--tight">
+    <div class="container grid grid--2" style="align-items:center;">
+      <div class="reveal">
+        <p class="eyebrow" style="color:var(--sub-sand);">Brand Showcase</p>
+        <h2>The color world of Subtropics</h2>
+        <p class="lede mt-1">Warm sunset tones as the sun goes down, turquoise and neon accents once night falls. Every photographer, every visual, every flyer shoots toward this world.</p>
+      </div>
+      <div class="color-world reveal" role="img" aria-label="Gradient showing the Subtropics color world — sand and coral sunset transitioning into navy night with a turquoise glow">
+        <span>Sunset &rarr; Night</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="founder-quote reveal">
+        <p class="eyebrow" style="color:var(--sub-coral);">A Note From The Founder</p>
+        <p class="lede mt-1" style="font-size:1.3rem;">"Underground Garden was created from rebellion. It was created for the weird. The odd ones out. The misfits. The creatives. The culture. Underground Garden is building to something incredible because YOU matter. You are the culture!"</p>
+        <p class="mt-1" style="font-family:var(--font-utility); font-size:0.8rem; letter-spacing:0.08em; color:var(--bone-dim);">— Chris &amp; Marco, Underground Garden</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" id="presale">
+    <div class="container">
+      <div class="bg-forest-block text-center reveal" style="padding: var(--space-7) var(--space-4);">
+        <p class="eyebrow" style="color:var(--turquoise);">Presale List</p>
+        <h2 class="mt-1">Be first through the gate.</h2>
+        <p class="lede mt-1 mx-auto" style="max-width:520px;">Join the Subtropics presale list for first access to tickets when they launch, plus every update on the road to 2028.</p>
+        <form class="inline-signup mt-2 mx-auto" style="max-width:460px;" data-form data-form-subject="Website — Subtropics Presale Signup" data-form-success="You're on the Subtropics presale list." novalidate>
+          <div class="field" style="flex:1 1 240px; margin-bottom:0;">
+            <label for="sub-phone" class="sr-only">Phone number</label>
+            <input type="tel" id="sub-phone" name="phone" placeholder="(555) 555-5555" required />
+            <p class="field-error">Enter a valid phone number.</p>
+          </div>
+          <button class="btn btn--primary" type="submit">Notify Me</button>
+        </form>
+        <p class="field-help mt-1">By joining, you agree to get texts from Underground Garden. Msg &amp; data rates may apply.</p>
+        <p class="form-note" data-form-note hidden></p>
+      </div>
+    </div>
+  </section>

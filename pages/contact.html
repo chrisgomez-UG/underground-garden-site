@@ -1,0 +1,223 @@
+---
+title: Contact — Underground Garden
+description: Book Underground Garden, become a partner or sponsor, or get in touch for press and general inquiries.
+active: contact
+nav_cta_label: Contact Us
+nav_cta_href: #tab-booking
+---
+<!-- head -->
+<style>
+  .tabs { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-5); }
+  .tab-btn {
+    font-family: var(--font-utility);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    min-height: 44px;
+    background: var(--black-soft);
+    border: 1px solid rgba(243,234,217,0.2);
+    color: var(--bone-dim);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .tab-btn[aria-selected="true"] { color: var(--black); background: var(--amber); border-color: var(--amber); }
+  .tab-panel[hidden] { display: none; }
+  .map-frame {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(243,234,217,0.12);
+    background: var(--black-soft);
+  }
+  .map-frame iframe { width: 100%; height: 220px; display: block; border: 0; }
+</style>
+<!-- body -->
+  <section class="hero hero-page">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="eyebrow reveal">Get In Touch</p>
+      <h1>Contact</h1>
+      <p class="lede reveal mt-1" style="max-width:600px;">Booking an artist, partnering with us, or just want to say what's up — pick a lane below.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="tabs" role="tablist" aria-label="Contact category">
+        <button class="tab-btn" role="tab" id="tab-booking" aria-selected="true" aria-controls="panel-booking">Artist Booking</button>
+        <button class="tab-btn" role="tab" id="tab-partners" aria-selected="false" aria-controls="panel-partners" tabindex="-1">Partners &amp; Sponsors</button>
+        <button class="tab-btn" role="tab" id="tab-general" aria-selected="false" aria-controls="panel-general" tabindex="-1">General / Press</button>
+      </div>
+
+      <div class="grid grid--2 reveal-group" style="align-items:start;">
+
+        <div>
+          <!-- Booking -->
+          <div class="tab-panel" id="panel-booking" role="tabpanel" aria-labelledby="tab-booking">
+            <h2>Get Booked at Underground Garden</h2>
+            <p class="lede mt-1">Artist and DJ booking inquiries — tell us about your sound and availability.</p>
+            <form class="mt-2" data-form data-form-subject="Website — Artist Booking Request" data-form-success="Booking request received — we'll follow up by email." novalidate>
+              <div class="field">
+                <label for="b-name">Name <span class="req">*</span></label>
+                <input type="text" id="b-name" name="name" required />
+                <p class="field-error">Enter your name.</p>
+              </div>
+              <div class="field">
+                <label for="b-email">Email <span class="req">*</span></label>
+                <input type="email" id="b-email" name="email" required />
+                <p class="field-error">Enter a valid email address.</p>
+              </div>
+              <div class="field">
+                <label for="b-links">Music / Press Kit Link</label>
+                <input type="url" id="b-links" name="links" placeholder="SoundCloud, Instagram, EPK..." />
+              </div>
+              <div class="field">
+                <label for="b-message">Message <span class="req">*</span></label>
+                <textarea id="b-message" name="message" required></textarea>
+                <p class="field-error">Tell us a bit about your booking request.</p>
+              </div>
+              <button class="btn btn--primary" type="submit">Send Booking Request</button>
+              <p class="form-note" data-form-note hidden></p>
+            </form>
+          </div>
+
+          <!-- Partners -->
+          <div class="tab-panel" id="panel-partners" role="tabpanel" aria-labelledby="tab-partners" hidden>
+            <h2>Partner With Us</h2>
+            <p class="lede mt-1">Sponsors, vendors, and brand partners — let's talk about building something with the Garden community.</p>
+            <form class="mt-2" data-form data-form-subject="Website — Partnership Inquiry" data-form-success="Thanks — our partnerships team will be in touch." novalidate>
+              <div class="field">
+                <label for="p-name">Company / Brand <span class="req">*</span></label>
+                <input type="text" id="p-name" name="company" required />
+                <p class="field-error">Enter a company or brand name.</p>
+              </div>
+              <div class="field">
+                <label for="p-email">Email <span class="req">*</span></label>
+                <input type="email" id="p-email" name="email" required />
+                <p class="field-error">Enter a valid email address.</p>
+              </div>
+              <div class="field">
+                <label for="p-message">What are you looking to do? <span class="req">*</span></label>
+                <textarea id="p-message" name="message" required></textarea>
+                <p class="field-error">Tell us about the partnership.</p>
+              </div>
+              <button class="btn btn--primary" type="submit">Send Partnership Inquiry</button>
+              <p class="form-note" data-form-note hidden></p>
+            </form>
+          </div>
+
+          <!-- General -->
+          <div class="tab-panel" id="panel-general" role="tabpanel" aria-labelledby="tab-general" hidden>
+            <h2>General &amp; Press</h2>
+            <p class="lede mt-1">Everything else — questions, press inquiries, lost &amp; found, or just to say hi.</p>
+            <p class="field-help mt-1">Writing about us or need brand assets? <a href="assets/press/ug-press-kit.zip" style="color:var(--amber);" download>Download the press kit</a> — logos, boilerplate copy, and brand colors.</p>
+            <form class="mt-2" data-form data-form-subject="Website — General / Press Inquiry" data-form-success="Message sent — we'll get back to you soon." novalidate>
+              <div class="field">
+                <label for="g-name">Name <span class="req">*</span></label>
+                <input type="text" id="g-name" name="name" required />
+                <p class="field-error">Enter your name.</p>
+              </div>
+              <div class="field">
+                <label for="g-email">Email <span class="req">*</span></label>
+                <input type="email" id="g-email" name="email" required />
+                <p class="field-error">Enter a valid email address.</p>
+              </div>
+              <div class="field">
+                <label for="g-message">Message <span class="req">*</span></label>
+                <textarea id="g-message" name="message" required></textarea>
+                <p class="field-error">Enter a message.</p>
+              </div>
+              <button class="btn btn--primary" type="submit">Send Message</button>
+              <p class="form-note" data-form-note hidden></p>
+            </form>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>Direct Lines</h3>
+          <ul class="stack mt-1">
+            <li>
+              <p class="eyebrow" style="margin-bottom:2px;">Booking, Sponsorship &amp; Press</p>
+              <a href="mailto:info@ugevents.com" style="color:var(--bone);">info@ugevents.com</a>
+            </li>
+          </ul>
+          <hr class="divider mt-2" style="margin-bottom: var(--space-4);" />
+          <p class="eyebrow">Based In</p>
+          <p class="lede mt-1" style="font-size:1rem;">Miami &amp; Fort Lauderdale, South Florida</p>
+          <div class="map-frame mt-2">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-80.55%2C25.55%2C-79.95%2C26.25&layer=mapnik&marker=25.9,-80.15" loading="lazy" title="Map of Miami and Fort Lauderdale, Underground Garden's home base"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="vine-divider" aria-hidden="true">
+    <img src="assets/img/brand/ug-wordmark-vine.png" alt="" loading="lazy" width="640" height="334" />
+  </div>
+
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head text-center mx-auto reveal">
+        <p class="eyebrow">Our Partners</p>
+        <h2>Sponsors &amp; Collaborators</h2>
+      </div>
+      <div class="carousel reveal" data-carousel>
+        <button class="carousel-arrow carousel-arrow--prev" type="button" data-carousel-prev aria-label="Scroll to previous sponsors">&lsaquo;</button>
+        <div class="carousel-track" data-carousel-track tabindex="0" aria-label="Sponsors and collaborators, scrollable">
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/rockbar.png" alt="Rockbar — venue partner" loading="lazy" width="600" height="194" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/bye-bye-plastic-foundation.png" alt="Bye Bye Plastic Foundation — nonprofit partner" loading="lazy" width="600" height="348" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/shotgun.png" alt="Shotgun — ticketing partner" loading="lazy" width="600" height="600" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/open-water.png" alt="Open Water — sponsor" loading="lazy" width="600" height="337" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/unbranded.png" alt="Unbranded — sponsor" loading="lazy" width="600" height="238" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/barkyard-n-brews.png" alt="Barkyard n' Brews — sponsor" loading="lazy" width="600" height="460" />
+          </div>
+          <div class="card carousel-item text-center" style="display:flex; align-items:center; justify-content:center;">
+            <img src="assets/img/logos/sacred-meadows.png" alt="Sacred Meadows — collaborator" loading="lazy" width="614" height="700" />
+          </div>
+        </div>
+        <button class="carousel-arrow carousel-arrow--next" type="button" data-carousel-next aria-label="Scroll to next sponsors">&rsaquo;</button>
+      </div>
+    </div>
+  </section>
+<!-- scripts -->
+<script>
+  (function () {
+    var tabs = document.querySelectorAll('[role="tab"]');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) {
+          t.setAttribute('aria-selected', 'false');
+          t.tabIndex = -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = true;
+        });
+        tab.setAttribute('aria-selected', 'true');
+        tab.tabIndex = 0;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = false;
+      });
+      tab.addEventListener('keydown', function (e) {
+        var list = Array.prototype.slice.call(tabs);
+        var i = list.indexOf(tab);
+        var target = null;
+        if (e.key === 'ArrowRight') target = list[(i + 1) % list.length];
+        if (e.key === 'ArrowLeft') target = list[(i - 1 + list.length) % list.length];
+        if (e.key === 'Home') target = list[0];
+        if (e.key === 'End') target = list[list.length - 1];
+        if (target) { e.preventDefault(); target.focus(); target.click(); }
+      });
+    });
+  })();
+</script>

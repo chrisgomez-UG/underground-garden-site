@@ -1,0 +1,131 @@
+---
+title: Merch — Underground Garden
+description: Underground Garden merch — the Be the Underground tee and future drops from South Florida's underground bass scene.
+active: merch
+nav_cta_label: Join The List
+nav_cta_href: #signup
+---
+<!-- head -->
+<style>
+  /* Square "Buy now" links — restyled from Square's default embed (white
+     card, blue button) to match the site. Reuse this class for every new
+     Square Payment Link / Buy Button as drops go live; only the href and
+     button label change per item. */
+  .square-buy-btn {
+    display: inline-flex;
+    padding: var(--space-3);
+    background: var(--black-soft);
+    border: 1px solid rgba(243, 234, 217, 0.12);
+    border-radius: 10px;
+  }
+  .square-buy-btn__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+    height: 48px;
+    padding: 0 var(--space-4);
+    font-family: var(--font-utility);
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--amber);
+    border-radius: 6px;
+  }
+  .square-buy-btn__link:hover { background: var(--bone); }
+</style>
+<!-- body -->
+  <section class="hero hero-page">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <p class="eyebrow reveal">Shop</p>
+      <h1>Merch</h1>
+      <p class="lede reveal mt-1" style="max-width:600px;">Wearable proof you're part of the Garden. Limited drops, no restocks promised.</p>
+    </div>
+  </section>
+
+  <section class="section" id="featured">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Coming Soon</p>
+        <h2>Be The Underground Tee</h2>
+      </div>
+      <div class="grid grid--2 reveal-group" style="align-items:center;">
+        <div class="grid grid--2 reveal-group">
+          <div class="media-card reveal"><img src="assets/img/tee-front-model.jpg" alt="Underground Garden tee, front view, worn" loading="lazy" width="1400" height="1400" /></div>
+          <div class="media-card reveal"><img src="assets/img/tee-back-model.jpg" alt="Underground Garden 'Be the Underground' back print, worn" loading="lazy" width="1400" height="1400" /></div>
+        </div>
+        <div class="reveal">
+          <span class="event-tag">Coming Soon</span>
+          <h3>Be The Underground</h3>
+          <p class="lede mt-1">Heavyweight tee with the root and tree motif across the back — our signature artwork tying &quot;Garden&quot; into everything we make.</p>
+          <p class="lede mt-2" style="font-size:1.1rem;">Exclusive drops coming soon. Be the first to find out.</p>
+          <a class="btn btn--primary mt-2" href="#signup">Join The List</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORE CHECKOUT — disabled 2026-07-10, teaser-only for now (Chris's
+       call — page stays simple until there's real stock/fulfillment ready).
+       To re-enable: delete the two <p>/<a> teaser lines above (lede mt-2
+       + the "Join The List" btn) and uncomment this block in their place.
+       The .square-buy-btn / .square-buy-btn__link CSS this depends on is
+       untouched in this page's <style> block above — nothing else to
+       restore. See README's "Merch page" section for the full picture,
+       including how to add a second product.
+  <p class="field-help mt-1">Buy directly below via Square, or <a href="contact.html" style="color:var(--amber);">reach out</a> with sizing questions first.</p>
+  <div class="mt-2">
+    <div class="square-buy-btn">
+      <a class="square-buy-btn__link" target="_blank" rel="noopener" href="https://square.link/u/rPpHr7tH?src=embed">Buy now</a>
+    </div>
+    <p class="field-help mt-1">Opens Square's secure checkout in a new tab to complete your purchase.</p>
+  </div>
+  -->
+
+  <div class="vine-divider" aria-hidden="true">
+    <img src="assets/img/brand/ug-wordmark-vine.png" alt="" loading="lazy" width="640" height="334" />
+  </div>
+
+  <!-- FUTURE DROPS — disabled 2026-07-10 (nothing queued up behind the
+       featured tee right now, so an empty "Coming Soon" placeholder grid
+       was just noise). Uncomment this whole section once a next drop is
+       confirmed enough to tease, and swap the placeholder-tile--merch
+       tiles for real photos one at a time as each one is ready — same
+       pattern documented in README's "Merch page" section.
+  <section class="section section--tight">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Coming Soon</p>
+        <h2>Future Drops</h2>
+      </div>
+      <div class="grid grid--4 reveal-group">
+        <div class="media-card tilt-a reveal"><div class="placeholder-tile placeholder-tile--merch"><svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M100 5v20M70 45c0-8 8-13 15-13s15 5 15 13M100 32c0-8 8-13 15-13s15 5 15 13M0 30h60M140 30h60" stroke="currentColor" stroke-width="1.5"/></svg><span>Drop Coming Soon</span></div></div>
+        <div class="media-card tilt-b reveal"><div class="placeholder-tile placeholder-tile--merch"><svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M100 5v20M70 45c0-8 8-13 15-13s15 5 15 13M100 32c0-8 8-13 15-13s15 5 15 13M0 30h60M140 30h60" stroke="currentColor" stroke-width="1.5"/></svg><span>Drop Coming Soon</span></div></div>
+        <div class="media-card tilt-a reveal"><div class="placeholder-tile placeholder-tile--merch"><svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M100 5v20M70 45c0-8 8-13 15-13s15 5 15 13M100 32c0-8 8-13 15-13s15 5 15 13M0 30h60M140 30h60" stroke="currentColor" stroke-width="1.5"/></svg><span>Drop Coming Soon</span></div></div>
+        <div class="media-card tilt-b reveal"><div class="placeholder-tile placeholder-tile--merch"><svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M100 5v20M70 45c0-8 8-13 15-13s15 5 15 13M100 32c0-8 8-13 15-13s15 5 15 13M0 30h60M140 30h60" stroke="currentColor" stroke-width="1.5"/></svg><span>Drop Coming Soon</span></div></div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <section class="section" id="signup">
+    <div class="container">
+      <div class="card text-center reveal" style="padding: var(--space-7) var(--space-4);">
+        <p class="eyebrow">Get On The List</p>
+        <h2 class="mt-1">Never miss a drop.</h2>
+        <p class="lede mt-1 mx-auto" style="max-width:520px;">First access to new merch, restocks, and limited runs — before they're gone.</p>
+        <form class="inline-signup mt-2 mx-auto" style="max-width:460px;" data-form data-form-subject="Website — Merch Drop List Signup" data-form-success="You're on the list. Welcome to the Garden." novalidate>
+          <div class="field" style="flex:1 1 240px; margin-bottom:0;">
+            <label for="merch-phone" class="sr-only">Phone number</label>
+            <input type="tel" id="merch-phone" name="phone" placeholder="(555) 555-5555" required />
+            <p class="field-error">Enter a valid phone number.</p>
+          </div>
+          <button class="btn btn--primary" type="submit">Join</button>
+        </form>
+        <p class="field-help mt-1">By joining, you agree to get texts from Underground Garden. Msg &amp; data rates may apply.</p>
+        <p class="form-note" data-form-note hidden></p>
+      </div>
+    </div>
+  </section>
