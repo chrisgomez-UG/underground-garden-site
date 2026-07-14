@@ -219,6 +219,30 @@ def cmd_compress(args):
     print(f"{path.name}: {before//1024}KB -> {after//1024}KB (quality={args.quality})")
 
 
+def cmd_webp(args):
+    """Write a WebP copy of a photo/flyer next to the original (photo.jpg ->
+    photo.webp), plus a photo-800w.webp variant when the source is wider than
+    1000px, for use in srcset. The original JPG stays on disk as the editing
+    source of truth — pages should reference the .webp files (see README's
+    "Images are WebP" section). Roughly halves file size at the same visual
+    quality."""
+    path = Path(args.path)
+    im = Image.open(path).convert("RGB")
+    w, h = im.size
+
+    out = path.with_suffix(".webp")
+    im.save(out, "WEBP", quality=args.quality, method=6)
+    print(f"{path.name}: {path.stat().st_size//1024}KB -> {out.name} {out.stat().st_size//1024}KB ({w}x{h})")
+
+    if w > 1000:
+        small_w = 800
+        small_h = round(h * small_w / w)
+        small = im.resize((small_w, small_h), Image.LANCZOS)
+        out_small = path.with_name(path.stem + "-800w.webp")
+        small.save(out_small, "WEBP", quality=args.quality, method=6)
+        print(f"  + {out_small.name} {out_small.stat().st_size//1024}KB ({small_w}x{small_h})")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -258,6 +282,11 @@ def main():
     p_compress.add_argument("path", help="JPG file to recompress in place")
     p_compress.add_argument("--quality", type=int, default=82, help="JPEG quality 1-95 (default 82)")
     p_compress.set_defaults(func=cmd_compress)
+
+    p_webp = sub.add_parser("webp", help="write photo.webp (+ photo-800w.webp if wide) next to a JPG")
+    p_webp.add_argument("path", help="source JPG (kept untouched)")
+    p_webp.add_argument("--quality", type=int, default=80, help="WebP quality 1-100 (default 80)")
+    p_webp.set_defaults(func=cmd_webp)
 
     args = parser.parse_args()
     args.func(args)

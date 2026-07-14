@@ -12,6 +12,15 @@
   force = true
 
 # Baseline security headers for every page and asset.
+#
+# The CSP allows exactly the third parties this site actually uses:
+# GA4 (googletagmanager script + analytics beacons), Web3Forms (form posts),
+# and the OpenStreetMap iframe on Contact. 'unsafe-inline' is required
+# because pages carry inline <script>/<style> blocks by design (page-scoped
+# CSS/JS in pages/*.html) — the policy's value here is blocking *external*
+# script injection from anywhere but the allowed hosts. If a new third-party
+# service is ever added (new embed, new script), its host must be added here
+# or it will silently fail in production while working fine locally.
 [[headers]]
   for = "/*"
   [headers.values]
@@ -20,6 +29,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Strict-Transport-Security = "max-age=31536000"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net; frame-src https://www.openstreetmap.org; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'"
 
 # CSS/JS are safe to cache forever: every <link>/<script> URL carries a
 # content-hash query param (?v=...) from build.py, so any change produces a
@@ -31,6 +41,13 @@
 
 [[headers]]
   for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Fonts never change in place — if one is ever replaced, rename the file
+# (see the @font-face comment in style.css).
+[[headers]]
+  for = "/assets/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
