@@ -212,15 +212,16 @@ nav_cta_href: #presale
         <h2 class="mt-1">Be first through the gate.</h2>
         <p class="lede mt-1 mx-auto" style="max-width:520px;">Join the Subtropics presale list for first access to tickets when they launch, plus every update on the road to 2028.</p>
         <form class="inline-signup mt-2 mx-auto" style="max-width:460px;" data-form data-form-subject="Website — Subtropics Presale Signup" data-form-success="You're on the Subtropics presale list." novalidate>
+          <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
           <div class="field" style="flex:1 1 240px; margin-bottom:0;">
             <label for="sub-phone" class="sr-only">Phone number</label>
-            <input type="tel" id="sub-phone" name="phone" placeholder="(555) 555-5555" required />
+            <input type="tel" id="sub-phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" required />
             <p class="field-error">Enter a valid phone number.</p>
           </div>
           <button class="btn btn--primary" type="submit">Notify Me</button>
         </form>
         <p class="field-help mt-1">By joining, you agree to get texts from Underground Garden. Msg &amp; data rates may apply.</p>
-        <p class="form-note" data-form-note hidden></p>
+        <p class="form-note" data-form-note role="status" hidden></p>
       </div>
     </div>
   </section>

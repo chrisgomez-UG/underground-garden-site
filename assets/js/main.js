@@ -46,6 +46,22 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && menu.classList.contains("is-open")) closeMenu();
     });
+    // Keep Tab focus cycling inside the open menu — it's a full-screen
+    // overlay, so tabbing out would land focus on content you can't see.
+    menu.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab" || !menu.classList.contains("is-open")) return;
+      var focusables = menu.querySelectorAll("a, button");
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   }
 
   /* ---------------- scroll reveal ---------------- */
@@ -154,7 +170,16 @@
   /* ---------------- marquee duplication (seamless loop) ---------------- */
   document.querySelectorAll(".marquee-track, .type-break-track").forEach(function (track) {
     if (track.dataset.doubled) return;
+    var originalCount = track.children.length;
     track.innerHTML += track.innerHTML;
+    // The second half is a visual-only copy for the seamless loop — hide it
+    // from screen readers and keep its links out of the Tab order so
+    // keyboard/AT users don't hit every item twice.
+    Array.prototype.slice.call(track.children, originalCount).forEach(function (clone) {
+      clone.setAttribute("aria-hidden", "true");
+      clone.querySelectorAll("a").forEach(function (a) { a.tabIndex = -1; });
+      if (clone.tagName === "A") clone.tabIndex = -1;
+    });
     track.dataset.doubled = "true";
   });
 
@@ -200,6 +225,11 @@
           && (input.type !== "email" || /.+@.+\..+/.test(input.value))
           && (input.type !== "tel" || input.value.replace(/\D/g, "").length >= 10);
         if (field) field.classList.toggle("has-error", !ok);
+        if (ok) {
+          input.removeAttribute("aria-invalid");
+        } else {
+          input.setAttribute("aria-invalid", "true");
+        }
         if (!ok) valid = false;
       });
       if (!valid) {
@@ -209,12 +239,32 @@
       }
 
       var note = form.querySelector("[data-form-note]");
+      if (!note) {
+        // Inline-signup forms keep their note outside the <form> tag.
+        var wrap = form.parentElement;
+        note = wrap ? wrap.querySelector("[data-form-note]") : null;
+      }
       var submitBtn = form.querySelector('button[type="submit"]');
+
+      // Honeypot: the hidden "botcheck" box is invisible to real visitors —
+      // if it's checked, a bot filled the form. Show the normal success
+      // message (don't tip the bot off) and send nothing.
+      var honeypot = form.querySelector('input[name="botcheck"]');
+      if (honeypot && honeypot.checked) {
+        if (note) {
+          note.hidden = false;
+          note.classList.remove("form-note--error");
+          note.textContent = form.dataset.formSuccess || "Thanks — we'll be in touch shortly.";
+        }
+        form.reset();
+        return;
+      }
 
       if (WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_ACCESS_KEY_HERE") {
         console.warn("Underground Garden: WEB3FORMS_ACCESS_KEY isn't set yet (assets/js/main.js) — form submissions aren't being sent anywhere.");
         if (note) {
           note.hidden = false;
+          note.classList.add("form-note--error");
           note.textContent = "Form isn't connected yet — please email info@ugevents.com directly for now.";
         }
         return;
@@ -236,6 +286,7 @@
         .then(function (result) {
           if (note) {
             note.hidden = false;
+            note.classList.toggle("form-note--error", !result.success);
             note.textContent = result.success
               ? (form.dataset.formSuccess || "Thanks — we'll be in touch shortly.")
               : "Something went wrong sending that — mind trying again, or email info@ugevents.com?";
@@ -245,6 +296,7 @@
         .catch(function () {
           if (note) {
             note.hidden = false;
+            note.classList.add("form-note--error");
             note.textContent = "Something went wrong sending that — mind trying again, or email info@ugevents.com?";
           }
         })

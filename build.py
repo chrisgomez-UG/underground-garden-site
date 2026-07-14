@@ -144,7 +144,11 @@ def build_page(path, layout):
     html = html.replace("{{CSS_VER}}", file_hash(CSS_FILE))
     html = html.replace("{{JS_VER}}", file_hash(JS_FILE))
     html = html.replace("{{SITE_URL}}", SITE_URL)
-    html = html.replace("{{PAGE_FILE}}", path.name)
+    # The homepage's canonical URL is the bare domain root ("/"), not
+    # "/index.html" — the live site serves it at both, and search engines
+    # treat those as two different pages unless the canonical/sitemap
+    # consistently point at one. netlify.toml also 301s /index.html -> /.
+    html = html.replace("{{PAGE_FILE}}", "" if path.name == "index.html" else path.name)
 
     out_path = DIST_DIR / path.name
     out_path.write_text(html)
@@ -176,7 +180,9 @@ def build_all():
 
 def write_robots_and_sitemap(page_files):
     base = SITE_URL or ""
-    urls = [f"{base}/{p.name}" for p in page_files if p.name != "404.html"]
+    # index.html is listed as the bare root URL, matching its canonical tag.
+    urls = [f"{base}/" if p.name == "index.html" else f"{base}/{p.name}"
+            for p in page_files if p.name != "404.html"]
 
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>',
                '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']

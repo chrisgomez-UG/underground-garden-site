@@ -48,7 +48,7 @@ nav_cta_href: #signup
   <section class="section" id="featured">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Coming Soon</p>
+        <p class="eyebrow">First Drop</p>
         <h2>Be The Underground Tee</h2>
       </div>
       <div class="grid grid--2 reveal-group" style="align-items:center;">
@@ -117,15 +117,16 @@ nav_cta_href: #signup
         <h2 class="mt-1">Never miss a drop.</h2>
         <p class="lede mt-1 mx-auto" style="max-width:520px;">First access to new merch, restocks, and limited runs — before they're gone.</p>
         <form class="inline-signup mt-2 mx-auto" style="max-width:460px;" data-form data-form-subject="Website — Merch Drop List Signup" data-form-success="You're on the list. Welcome to the Garden." novalidate>
+          <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
           <div class="field" style="flex:1 1 240px; margin-bottom:0;">
             <label for="merch-phone" class="sr-only">Phone number</label>
-            <input type="tel" id="merch-phone" name="phone" placeholder="(555) 555-5555" required />
+            <input type="tel" id="merch-phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" required />
             <p class="field-error">Enter a valid phone number.</p>
           </div>
           <button class="btn btn--primary" type="submit">Join</button>
         </form>
         <p class="field-help mt-1">By joining, you agree to get texts from Underground Garden. Msg &amp; data rates may apply.</p>
-        <p class="form-note" data-form-note hidden></p>
+        <p class="form-note" data-form-note role="status" hidden></p>
       </div>
     </div>
   </section>

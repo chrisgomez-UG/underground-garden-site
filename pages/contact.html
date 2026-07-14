@@ -58,19 +58,20 @@ nav_cta_href: #tab-booking
             <h2>Get Booked at Underground Garden</h2>
             <p class="lede mt-1">Artist and DJ booking inquiries — tell us about your sound and availability.</p>
             <form class="mt-2" data-form data-form-subject="Website — Artist Booking Request" data-form-success="Booking request received — we'll follow up by email." novalidate>
+              <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
               <div class="field">
                 <label for="b-name">Name <span class="req">*</span></label>
-                <input type="text" id="b-name" name="name" required />
+                <input type="text" id="b-name" name="name" autocomplete="name" required />
                 <p class="field-error">Enter your name.</p>
               </div>
               <div class="field">
                 <label for="b-email">Email <span class="req">*</span></label>
-                <input type="email" id="b-email" name="email" required />
+                <input type="email" id="b-email" name="email" autocomplete="email" required />
                 <p class="field-error">Enter a valid email address.</p>
               </div>
               <div class="field">
                 <label for="b-links">Music / Press Kit Link</label>
-                <input type="url" id="b-links" name="links" placeholder="SoundCloud, Instagram, EPK..." />
+                <input type="url" id="b-links" name="links" autocomplete="url" placeholder="SoundCloud, Instagram, EPK..." />
               </div>
               <div class="field">
                 <label for="b-message">Message <span class="req">*</span></label>
@@ -78,7 +79,7 @@ nav_cta_href: #tab-booking
                 <p class="field-error">Tell us a bit about your booking request.</p>
               </div>
               <button class="btn btn--primary" type="submit">Send Booking Request</button>
-              <p class="form-note" data-form-note hidden></p>
+              <p class="form-note" data-form-note role="status" hidden></p>
             </form>
           </div>
 
@@ -87,14 +88,15 @@ nav_cta_href: #tab-booking
             <h2>Partner With Us</h2>
             <p class="lede mt-1">Sponsors, vendors, and brand partners — let's talk about building something with the Garden community.</p>
             <form class="mt-2" data-form data-form-subject="Website — Partnership Inquiry" data-form-success="Thanks — our partnerships team will be in touch." novalidate>
+              <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
               <div class="field">
                 <label for="p-name">Company / Brand <span class="req">*</span></label>
-                <input type="text" id="p-name" name="company" required />
+                <input type="text" id="p-name" name="company" autocomplete="organization" required />
                 <p class="field-error">Enter a company or brand name.</p>
               </div>
               <div class="field">
                 <label for="p-email">Email <span class="req">*</span></label>
-                <input type="email" id="p-email" name="email" required />
+                <input type="email" id="p-email" name="email" autocomplete="email" required />
                 <p class="field-error">Enter a valid email address.</p>
               </div>
               <div class="field">
@@ -103,7 +105,7 @@ nav_cta_href: #tab-booking
                 <p class="field-error">Tell us about the partnership.</p>
               </div>
               <button class="btn btn--primary" type="submit">Send Partnership Inquiry</button>
-              <p class="form-note" data-form-note hidden></p>
+              <p class="form-note" data-form-note role="status" hidden></p>
             </form>
           </div>
 
@@ -113,14 +115,15 @@ nav_cta_href: #tab-booking
             <p class="lede mt-1">Everything else — questions, press inquiries, lost &amp; found, or just to say hi.</p>
             <p class="field-help mt-1">Writing about us or need brand assets? <a href="assets/press/ug-press-kit.zip" style="color:var(--amber);" download>Download the press kit</a> — logos, boilerplate copy, and brand colors.</p>
             <form class="mt-2" data-form data-form-subject="Website — General / Press Inquiry" data-form-success="Message sent — we'll get back to you soon." novalidate>
+              <input type="checkbox" name="botcheck" tabindex="-1" aria-hidden="true" style="display:none;" />
               <div class="field">
                 <label for="g-name">Name <span class="req">*</span></label>
-                <input type="text" id="g-name" name="name" required />
+                <input type="text" id="g-name" name="name" autocomplete="name" required />
                 <p class="field-error">Enter your name.</p>
               </div>
               <div class="field">
                 <label for="g-email">Email <span class="req">*</span></label>
-                <input type="email" id="g-email" name="email" required />
+                <input type="email" id="g-email" name="email" autocomplete="email" required />
                 <p class="field-error">Enter a valid email address.</p>
               </div>
               <div class="field">
@@ -129,7 +132,7 @@ nav_cta_href: #tab-booking
                 <p class="field-error">Enter a message.</p>
               </div>
               <button class="btn btn--primary" type="submit">Send Message</button>
-              <p class="form-note" data-form-note hidden></p>
+              <p class="form-note" data-form-note role="status" hidden></p>
             </form>
           </div>
         </div>

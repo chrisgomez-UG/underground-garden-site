@@ -897,6 +897,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .form-note[hidden] { display: none; }
 
+/* Failure state — the default .form-note look is a green "success" box;
+   errors get the same warm-rust treatment as invalid fields so the two
+   outcomes are visually distinct at a glance. */
+.form-note--error {
+  border-color: rgba(201, 106, 58, 0.5);
+  background: rgba(201, 106, 58, 0.12);
+}
+
 .inline-signup {
   display: flex;
   gap: var(--space-2);
