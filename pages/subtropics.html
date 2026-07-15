@@ -78,8 +78,10 @@ nav_cta_href: #presale
     position: relative;
     max-width: 720px;
     margin: 0 auto;
+    /* the indent alone signals "quotation" — the oversized coral glyph
+       below is the accent (was doubled up with a coral border-left
+       stripe competing against it) */
     padding: var(--space-3) 0 var(--space-3) var(--space-6);
-    border-left: 3px solid var(--sub-coral);
   }
   .founder-quote::before {
     content: "\201C";
@@ -89,8 +91,8 @@ nav_cta_href: #presale
     font-family: var(--font-display);
     font-size: 9rem;
     line-height: 1;
-    color: var(--sub-sand);
-    opacity: 0.16;
+    color: var(--sub-coral);
+    opacity: 0.35;
     pointer-events: none;
   }
 
