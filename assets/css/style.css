@@ -1006,6 +1006,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   font-size: 0.78rem;
   color: var(--bone-dim);
 }
+/* WCAG 2.2 SC 2.5.8 target size — the Privacy/Terms links inline in the
+   copyright line were only ~19px tall inheriting body text height. */
+.footer-bottom a { display: inline-block; padding: 6px 0; margin: -6px 0; }
 .socials { display: flex; gap: var(--space-3); }
 .socials a { color: var(--bone-dim); }
 .socials a:hover { color: var(--amber); }
