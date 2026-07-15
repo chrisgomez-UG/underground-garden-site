@@ -123,6 +123,13 @@ Every page used to open `hero → type-break → content`, identically, site-wid
   After processing, set the `<img>` `width`/`height` attributes to the file's actual pixel dimensions (`sips -g pixelWidth -g pixelHeight file.jpg` to check).
 - Filename convention so far: `assets/img/events/event-archive-NN-shortname.jpg`, `NN` zero-padded and ordered oldest→newest (so slot order in the HTML is the reverse of the filename numbers — newest file number goes in the first grid slot).
 
+**Subtropics timeline scroll motion (`pages/subtropics.html`, added 2026-07-15):**
+- The "Road to Subtropics" timeline has a scroll-scrubbed turquoise progress line (`.timeline-progress`) that travels down the static gradient line as you scroll, plus chapter dots that scale up (`.is-lit`) as the 70%-viewport "read line" passes them. Plain vanilla JS — deliberately NOT GSAP (CSP is `script-src 'self'`, and one scrub effect doesn't justify vendoring a library).
+- It lives in exactly 3 places, all in `pages/subtropics.html`: the `.timeline-progress` CSS block in the page `<style>` (find `scroll-scrubbed`), the `<div class="timeline-progress">` element (kept as the LAST child of `.timeline` on purpose — putting it first would shift the `.reveal-group` nth-child stagger delays), and the `<script>` block at the bottom (find `Road to Subtropics`). **To remove the effect entirely, delete those 3 blocks — nothing else references them.** Honors `prefers-reduced-motion` (bar hidden via CSS + script exits early).
+
+**FAQPage structured data (`pages/safety.html`, added 2026-07-15):**
+- The FAQ page carries `FAQPage` JSON-LD in its `<!-- head -->` block mirroring the 10 visible Q&As. **If a question/answer is edited in the visible `<details>` accordion, update the matching JSON-LD entry too** (plain text only there — links/HTML aren't allowed in schema text fields).
+
 **FAQ page (`pages/safety.html`, added 2026-07-03, content confirmed by Chris):**
 - Combined "Ground Rules" (community values) + FAQ accordion (native `<details>/<summary>`, no JS — see `.faq-item` in `style.css`) on one page, per Chris's call to keep both together rather than splitting them.
 - Nav label is "FAQ" (`NAV_ITEMS` in `build.py`, key `"safety"` — filename stayed `safety.html`, only the label changed) and the H1 is "Frequently Asked Questions." Also in the footer Explore list.

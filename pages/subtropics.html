@@ -115,6 +115,29 @@ nav_cta_href: #presale
     -webkit-text-stroke: 1.5px var(--turquoise);
     opacity: 0.3;
   }
+
+  /* scroll-scrubbed "road" progress line over the static timeline gradient —
+     a lit turquoise signal travels down as you scroll through the chapters,
+     landing on Subtropics 2028. Plain scroll-linked JS (see script below)
+     instead of a GSAP dependency, matching the site's zero-JS-library build. */
+  .timeline-progress {
+    position: absolute;
+    left: 6px; top: 6px;
+    width: 1px; height: calc(100% - 12px);
+    background: var(--turquoise);
+    box-shadow: 0 0 8px rgba(56, 198, 190, 0.7);
+    transform: scaleY(var(--tl-progress, 0));
+    transform-origin: top;
+    pointer-events: none;
+  }
+  .timeline-item::before { transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out); }
+  .timeline-item.is-lit::before { transform: scale(1.3); }
+  .timeline-item--flagship.is-lit::before {
+    box-shadow: 0 0 0 4px rgba(56, 198, 190, 0.28), 0 0 22px rgba(56, 198, 190, 0.75);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-progress { display: none; }
+  }
 </style>
 <!-- body -->
   <section class="hero">
@@ -155,7 +178,7 @@ nav_cta_href: #presale
            structured data" section) — copy is intentionally different
            (this is a narrative timeline, events.html is a reference list),
            just keep the month/year in sync. -->
-      <div class="timeline reveal-group">
+      <div class="timeline reveal-group" data-timeline>
         <div class="timeline-item reveal">
           <p class="eyebrow" style="margin-bottom:4px; color:var(--sub-sand);">Late August 2026</p>
           <h3>Chapter One</h3>
@@ -176,6 +199,9 @@ nav_cta_href: #presale
           <p class="eyebrow" style="margin-bottom:4px; color:var(--turquoise);">2028</p>
           <h3 style="color:var(--turquoise); text-shadow:0 0 18px rgba(56,198,190,0.35);">Subtropics</h3>
         </div>
+        <!-- absolutely positioned; kept LAST so it doesn't shift the
+             .reveal-group nth-child stagger delays of the items above -->
+        <div class="timeline-progress" aria-hidden="true"></div>
       </div>
     </div>
   </section>
@@ -227,3 +253,37 @@ nav_cta_href: #presale
       </div>
     </div>
   </section>
+<!-- scripts -->
+<script>
+  // Road to Subtropics: scroll-scrubbed progress line + chapter dots lighting
+  // up as the "read line" (70% down the viewport) passes each one.
+  (function () {
+    "use strict";
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var tl = document.querySelector("[data-timeline]");
+    if (!tl) return;
+    var items = tl.querySelectorAll(".timeline-item");
+    var ticking = false;
+
+    function update() {
+      ticking = false;
+      var rect = tl.getBoundingClientRect();
+      var readLine = window.innerHeight * 0.7;
+      var progress = (readLine - rect.top) / rect.height;
+      progress = Math.max(0, Math.min(1, progress));
+      tl.style.setProperty("--tl-progress", progress.toFixed(4));
+      items.forEach(function (item) {
+        item.classList.toggle("is-lit", item.getBoundingClientRect().top <= readLine);
+      });
+    }
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+  })();
+</script>
