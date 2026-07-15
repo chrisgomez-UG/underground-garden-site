@@ -152,7 +152,7 @@ p { margin: 0; }
 
 .eyebrow {
   font-family: var(--font-utility);
-  font-size: 0.72rem;
+  font-size: 0.75rem; /* 12px floor — WCAG-adjacent legibility rule, no body text under 12px */
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--amber);
@@ -440,6 +440,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .marquee-track a {
   color: var(--amber);
   border-bottom: 1px solid var(--amber);
+  /* moving link in the marquee — expand its hit area to ~50px tall
+     (padding offset by negative margin, zero visual change) so it's
+     actually tappable mid-scroll on touch screens */
+  padding: 14px 6px;
+  margin: -14px -6px;
   transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
 }
 .marquee-track a:hover { color: var(--bone); border-color: var(--bone); }
@@ -743,7 +748,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .event-tag {
   display: inline-block;
   font-family: var(--font-utility);
-  font-size: 0.65rem;
+  font-size: 0.75rem; /* 12px floor, see .eyebrow */
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--forest-bright);
@@ -977,7 +982,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   text-transform: uppercase;
 }
 .footer-col ul { display: flex; flex-direction: column; gap: var(--space-2); }
-.footer-col a { color: var(--bone-dim); font-size: 0.9rem; transition: color var(--dur-fast); }
+/* padding+negative-margin expands the tap target (~37px + 8px gap ≈ 44px
+   effective pitch per touch-target guidelines) without changing the
+   footer's visual rhythm */
+.footer-col a { color: var(--bone-dim); font-size: 0.9rem; transition: color var(--dur-fast); display: inline-block; padding: 8px 0; margin: -4px 0; }
 .footer-col a:hover { color: var(--amber); }
 .footer-bottom {
   display: flex;
@@ -1006,7 +1014,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .tag-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 .pill {
   font-family: var(--font-utility);
-  font-size: 0.68rem;
+  font-size: 0.75rem; /* 12px floor, see .eyebrow */
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border: 1px solid rgba(243, 234, 217, 0.25);
