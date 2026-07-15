@@ -150,6 +150,11 @@ h3 { font-size: clamp(1.35rem, 3vw, 1.9rem); }
 
 p { margin: 0; }
 
+/* Orphan control: balance multi-line headings, avoid single-word last
+   lines in ledes. No-ops gracefully in browsers without text-wrap support. */
+h1, h2, h3 { text-wrap: balance; }
+p, .lede { text-wrap: pretty; }
+
 .eyebrow {
   font-family: var(--font-utility);
   font-size: 0.75rem; /* 12px floor — WCAG-adjacent legibility rule, no body text under 12px */
@@ -522,6 +527,19 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.7; }
   50% { opacity: 1; }
+}
+/* Film-grain texture over every hero — breaks digital flatness with an
+   analog feel that matches the brand's raw/flyer-culture aesthetic. Inline
+   SVG feTurbulence tile (no asset request); sits on the glow layer so it
+   fades with the same reduced-motion handling. Keep opacity subtle
+   (0.04-0.06) — at higher values it reads as compression artifacts. */
+.hero-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  opacity: 0.05;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero::before, .hero::after, .hero-glow { animation: none; }
