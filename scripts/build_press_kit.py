@@ -22,7 +22,8 @@ About
 -----
 Underground Garden is South Florida's home for underground electronic
 music — pool parties, beach parties, warehouse nights, and donation events
-across Miami and Fort Lauderdale. Built by the community, for the community.
+across Miami and Fort Lauderdale. Founded by Chris and Marco in February
+2021. Built by the community, for the community.
 Every event is a chapter on the road to Subtropics, a sunset-into-night
 flagship festival launching 2028 at Virginia Key Beach, Miami.
 
