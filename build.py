@@ -182,7 +182,9 @@ def build_all():
     # which never see netlify.toml (it lives outside dist/). Keeping the
     # rules in these root files and copying them in here is what makes
     # security headers + redirects deploy-method-proof.
-    for conf in ("_headers", "_redirects"):
+    # llms.txt rides along the same way — a plain-text brand summary + page
+    # map for AI answer engines (ChatGPT, Perplexity, AI Overviews).
+    for conf in ("_headers", "_redirects", "llms.txt"):
         src = ROOT / conf
         if src.exists():
             shutil.copy2(src, DIST_DIR / conf)
