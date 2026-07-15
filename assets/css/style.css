@@ -807,16 +807,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
    featured/2x tiles) — see "Past Events flyers" in README. */
 .media-card--flyer img { object-fit: contain; }
 .media-card--flyer:hover img { transform: none; }
-.media-card-label {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: var(--space-3);
-  background: linear-gradient(to top, rgba(10,10,10,0.9), transparent);
-  font-family: var(--font-utility);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
 
 .placeholder-tile {
   display: flex;
@@ -1060,7 +1050,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .skip-link:focus { top: var(--space-3); }
 
-.color-amber { color: var(--amber); }
 .bg-forest-block {
   background: linear-gradient(135deg, var(--forest), var(--black));
   border: 1px solid rgba(60, 106, 73, 0.4);

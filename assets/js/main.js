@@ -260,16 +260,6 @@
         return;
       }
 
-      if (WEB3FORMS_ACCESS_KEY === "PASTE_YOUR_ACCESS_KEY_HERE") {
-        console.warn("Underground Garden: WEB3FORMS_ACCESS_KEY isn't set yet (assets/js/main.js) — form submissions aren't being sent anywhere.");
-        if (note) {
-          note.hidden = false;
-          note.classList.add("form-note--error");
-          note.textContent = "Form isn't connected yet — please email info@ugevents.com directly for now.";
-        }
-        return;
-      }
-
       var data = new FormData(form);
       data.append("access_key", WEB3FORMS_ACCESS_KEY);
       data.append("subject", form.dataset.formSubject || "Underground Garden — website submission");
