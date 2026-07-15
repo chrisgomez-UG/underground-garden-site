@@ -1,0 +1,7 @@
+# Netlify redirect rules — copied into dist/ by build.py so they apply on
+# every kind of deploy (see the note at the top of _headers).
+#
+# /index.html and / are the same page — collapse to the canonical root URL
+# (matches the canonical tag + sitemap entry build.py writes). The trailing
+# ! (force) is required because the file really exists at /index.html.
+/index.html  /  301!

@@ -210,6 +210,17 @@ if you just want to check the generated output without running a server.
 This repo is connected to Netlify via GitHub — **push to the repo's main
 branch and Netlify builds + deploys automatically.** No manual upload step.
 
+> ⚠️ **Unverified as of 2026-07-14:** the deploy that went out that day had
+> new content but none of netlify.toml's header/redirect rules, which is
+> the signature of a *manual* deploy (drag-and-drop or CLI upload of
+> `dist/`), not a git-triggered CI build. Check the Netlify dashboard →
+> Deploys tab: if the latest deploys say "manual deploy" rather than
+> naming a git commit, the GitHub connection isn't actually building on
+> push and needs reconnecting (Site configuration → Build & deploy →
+> Link repository). The `_headers`/`_redirects`-in-dist setup (see above)
+> makes headers work either way, but CI should still be fixed so future
+> pushes deploy without a manual step.
+
 - `netlify.toml` (repo root) tells Netlify everything it needs: build
   command `python3 build.py`, publish directory `dist`. Netlify runs the
   build itself on its own servers on every push — `build.py` only needs
@@ -221,10 +232,17 @@ branch and Netlify builds + deploys automatically.** No manual upload step.
     **Content-Security-Policy** (added later on 2026-07-14) that allowlists
     exactly the third parties in use: GA4, Web3Forms, and the OpenStreetMap
     iframe. ⚠️ **If a new third-party embed/script/service is ever added to
-    the site, its host must be added to the CSP in netlify.toml too** — it
-    will work fine in local preview (which has no CSP) and silently fail in
-    production otherwise. `unsafe-inline` is allowed on purpose (pages carry
-    inline page-scoped `<script>`/`<style>` blocks by design).
+    the site, its host must be added to the CSP too** — it will work fine in
+    local preview (which has no CSP) and silently fail in production
+    otherwise. `unsafe-inline` is allowed on purpose (pages carry inline
+    page-scoped `<script>`/`<style>` blocks by design).
+  - **Headers/redirects live in the root `_headers` and `_redirects` files,
+    NOT in netlify.toml** — build.py copies them into `dist/` so they apply
+    on every deploy type. Rules in netlify.toml only work for git-triggered
+    CI builds; the 2026-07-14 deploy turned out to be a manual deploy of
+    `dist/` (see below) and shipped with no headers at all until these
+    files existed. Edit `_headers`/`_redirects` at the repo root, never in
+    `dist/` (generated), and never move the rules back into netlify.toml.
   - **Cache headers**: CSS/JS cache for a year + `immutable` (safe because
     the `?v=<content-hash>` query param from `build.py` changes the URL on
     every edit); images/video cache for one week only, because this

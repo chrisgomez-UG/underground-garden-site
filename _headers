@@ -1,0 +1,44 @@
+# Netlify header rules — copied into dist/ by build.py so they apply on
+# EVERY kind of deploy (git/CI, CLI, and manual drag-and-drop of dist/).
+# Rules in netlify.toml only work for git/CI builds, which is why they
+# moved here on 2026-07-14 after a manual deploy shipped without them.
+#
+# The CSP allows exactly the third parties this site actually uses:
+# GA4 (googletagmanager script + analytics beacons), Web3Forms (form posts),
+# and the OpenStreetMap iframe on Contact. 'unsafe-inline' is required
+# because pages carry inline <script>/<style> blocks by design (page-scoped
+# CSS/JS in pages/*.html) — the policy's value here is blocking *external*
+# script injection from anywhere but the allowed hosts. If a new third-party
+# service is ever added (new embed, new script), its host must be added here
+# or it will silently fail in production while working fine locally.
+
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net; frame-src https://www.openstreetmap.org; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'
+
+# CSS/JS are safe to cache forever: every <link>/<script> URL carries a
+# content-hash query param (?v=...) from build.py, so any change produces a
+# brand-new URL and old cached copies are simply never requested again.
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts never change in place — if one is ever replaced, rename the file
+# (see the @font-face comment in style.css).
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Images/video are NOT content-hashed and do get swapped in place in this
+# project's workflow (same filename, new file) — cache for a week, not a
+# year, so returning visitors pick up replacements reasonably fast.
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+/assets/video/*
+  Cache-Control: public, max-age=604800

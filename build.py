@@ -177,6 +177,17 @@ def build_all():
     shutil.copytree(ASSETS_DIR, DIST_DIR / "assets", dirs_exist_ok=True)
     print("  copied assets/ -> dist/assets/")
 
+    # Netlify reads _headers/_redirects from inside the publish directory on
+    # every deploy type — including manual drag-and-drop deploys of dist/,
+    # which never see netlify.toml (it lives outside dist/). Keeping the
+    # rules in these root files and copying them in here is what makes
+    # security headers + redirects deploy-method-proof.
+    for conf in ("_headers", "_redirects"):
+        src = ROOT / conf
+        if src.exists():
+            shutil.copy2(src, DIST_DIR / conf)
+            print(f"  copied {conf} -> dist/{conf}")
+
 
 def write_robots_and_sitemap(page_files):
     base = SITE_URL or ""

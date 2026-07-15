@@ -1,65 +1,12 @@
+# Build settings for Netlify's git/CI integration.
+#
+# ⚠️ Header and redirect rules do NOT live here — they're in the root
+# _headers and _redirects files, which build.py copies into dist/.
+# Reason: rules in netlify.toml only apply when Netlify itself runs the
+# build from git; a manual deploy of dist/ (drag-and-drop or CLI) never
+# reads netlify.toml, and exactly that happened on 2026-07-14 — the site
+# shipped with no security headers. Files inside the publish directory
+# apply on every deploy type, so that's where the rules live now.
 [build]
   command = "python3 build.py"
   publish = "dist"
-
-# /index.html and / are the same page — collapse to the canonical root URL
-# (matches the canonical tag + sitemap entry build.py writes). force = true
-# is required because the file really exists at /index.html.
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-  force = true
-
-# Baseline security headers for every page and asset.
-#
-# The CSP allows exactly the third parties this site actually uses:
-# GA4 (googletagmanager script + analytics beacons), Web3Forms (form posts),
-# and the OpenStreetMap iframe on Contact. 'unsafe-inline' is required
-# because pages carry inline <script>/<style> blocks by design (page-scoped
-# CSS/JS in pages/*.html) — the policy's value here is blocking *external*
-# script injection from anywhere but the allowed hosts. If a new third-party
-# service is ever added (new embed, new script), its host must be added here
-# or it will silently fail in production while working fine locally.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Strict-Transport-Security = "max-age=31536000"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net; frame-src https://www.openstreetmap.org; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'"
-
-# CSS/JS are safe to cache forever: every <link>/<script> URL carries a
-# content-hash query param (?v=...) from build.py, so any change produces a
-# brand-new URL and old cached copies are simply never requested again.
-[[headers]]
-  for = "/assets/css/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/assets/js/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Fonts never change in place — if one is ever replaced, rename the file
-# (see the @font-face comment in style.css).
-[[headers]]
-  for = "/assets/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Images/video are NOT content-hashed and do get swapped in place in this
-# project's workflow (same filename, new file) — cache for a week, not a
-# year, so returning visitors pick up replacements reasonably fast.
-[[headers]]
-  for = "/assets/img/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
-
-[[headers]]
-  for = "/assets/video/*"
-  [headers.values]
-    Cache-Control = "public, max-age=604800"
